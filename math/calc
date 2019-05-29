@@ -1,2 +1,7 @@
 #!/bin/bash
+if [[ $# -eq 0 ]]; then
+	echo "Input required"
+	exit 1
+fi
+
 echo $(($1))
