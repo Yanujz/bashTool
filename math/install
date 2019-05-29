@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "Installing..."
+sudo cp  ./calc /usr/local/bin
+sudo cp  ./decToHex /usr/local/bin
+sudo cp  ./hexToBin /usr/local/bin
+sudo cp  ./hexToDec /usr/local/bin
+sudo chmod +x /usr/local/bin/calc
+sudo chmod +x /usr/local/bin/decToHex
+sudo chmod +x /usr/local/bin/hexToBin
+sudo chmod +x /usr/local/bin/hexToDec
+echo "Done."

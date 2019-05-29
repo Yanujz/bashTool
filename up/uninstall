@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "Removing files..."
+if [ -f /usr/local/bin/UP ]; then 
+	$(sudo rm /usr/local/bin/UP)
+	sed -e "s/alias up=\". UP\"//g" -i ~/.bashrc
+fi
+echo "Done."

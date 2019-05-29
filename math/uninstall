@@ -1,0 +1,15 @@
+#!/bin/bash
+echo "Removing files..."
+if [ -f /usr/local/bin/calc ]; then 
+	$(sudo rm /usr/local/bin/calc)
+fi
+if [ -f /usr/local/bin/decToHex ]; then 
+	$(sudo rm /usr/local/bin/decToHex)
+fi
+if [ -f /usr/local/bin/hexToBin ]; then 
+	$(sudo rm /usr/local/bin/hexToBin)
+fi
+if [ -f /usr/local/bin/hexToDec ]; then 
+	$(sudo rm /usr/local/bin/hexToDec)
+fi
+echo "Done."
