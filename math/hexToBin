@@ -1,0 +1,20 @@
+#!/bin/bash
+if [[ $# -eq 0 ]]; then
+	echo "Input required"
+	exit 1
+fi
+
+while [ $# != 0 ]
+do
+str=$(echo "ibase=16; obase=2;  ${1^^}"  | bc )
+str=$(echo $str | rev)
+while true; do
+	if [[ ${#str} == 8  ]] || [[ ${#str} == 16  ]] || [[ ${#str} == 32  ]] || [[ ${#str} == 64  ]]; then
+		break
+	fi
+	str+="0"
+done
+str=$(echo $str | sed 's/.\{4\}/& /g'| rev)
+echo "$1 =$str"
+shift
+done

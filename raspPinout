@@ -1,0 +1,82 @@
+#!/bin/bash
+#Check this website for more information:
+#https://misc.flogisoft.com/bash/tip_colors_and_formatting
+
+SET_BOLD=\\e[1m
+SET_DIM=\\e[2m
+SET_UNDERLINED=\\e[4m
+SET_BLINK=\\e[5m
+SET_REVERSE=\\e[7m
+SET_HIDDEN=\\e[8m
+
+RES_ALL=\\e[0m
+RES_BOLD=\\e[21m
+RES_DIM=\\e[22m
+RES_UNDERLINED=\\e[24m
+RES_BLINK=\\e[25m
+RES_REVERSE=\\e[27m
+RES_HIDDEN=\\e[28m
+
+
+F_DEF=\\e[39m
+F_BLACK=\\e[30m
+F_RED=\\e[31m
+F_GREE=\e[32m
+F_YELLOW=\\e[33m
+F_BLUE=\\e[34m
+F_MAGENTA=\\e[35m
+F_CYAN=\\e[36m
+F_LIGHTGRAY=\\e[37m
+F_DARKGRAY=\\e[90m
+F_LIGHTRED=\\e[91m
+F_LIGHTGREEN=\\e[92m
+F_LIGHTYELLOW=\\e[93m
+F_LIGHTBLUE=\\e[94m
+F_LIGHTMAGENTA=\\e[95m
+F_LIGHTCYAN=\\e[96m
+F_WHITE=\\e[97m
+
+B_DEF=\\e[49m
+B_BLACK=\\e[40m
+B_RED=\\e[41m
+B_GREEN=\\e[42m
+B_YELLOW=\\e[43m
+B_BLUE=\\e[44m
+B_MAGENTA=\\e[45m
+B_CYAN=\\e[46m
+B_LIGHTGRAY=\\e[47m
+B_DARKGRAY=\\e[100m
+B_LIGHTRED=\\e[101m
+B_LIGHTGREEN=\\e[102m
+B_LIGHTYELLOW=\\e[103m
+B_LIGHTBLUE=\\e[104m
+B_LIGHTMAGENTA=\\e[105m
+B_LIGHTCYAN=\\e[106m
+B_WHITE=\\e[107m
+
+figlet -c "Raspberry Pi GPIO Header A+,B+, Zero, Pi2"
+#echo -e "Legend:"
+#echo -e "${F_BLACK}${B_YELLOW} 3.3V ${B_RED} 5V ${B_LIGHTYELLOW} PWM ${B_LIGHTGREEN} GPIO ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE}  Peripherls      GPIO       Particle    Pin#        Pin#    Particle       GPIO     Peripherals ${RES_ALL}"
+echo -e "${F_BLACK}${B_YELLOW}                3.3V                    ${B_LIGHTMAGENTA} 01  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 02  ${B_RED}                    5V                  ${RES_ALL}"
+echo -e "${F_BLACK}${B_LIGHTCYAN}     I2C     ${B_LIGHTGREEN}    GPIO02   ${B_LIGHTCYAN}      SDA     ${B_LIGHTMAGENTA} 03  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 04  ${B_RED}                    5V                  ${RES_ALL}"
+echo -e "${F_BLACK}${B_LIGHTCYAN}     I2C     ${B_LIGHTGREEN}    GPIO03   ${B_LIGHTCYAN}      SCL     ${B_LIGHTMAGENTA} 05  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 06  ${B_WHITE}                    GND                 ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE} Digital I/O ${B_LIGHTGREEN}    GPIO04   ${B_LIGHTCYAN}      D0      ${B_LIGHTMAGENTA} 07  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 08  ${B_LIGHTCYAN}      TX      ${B_LIGHTGREEN}    GPIO14   ${B_LIGHTRED}     UART    ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE}                GND                     ${B_LIGHTMAGENTA} 09  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 10  ${B_LIGHTCYAN}      RX      ${B_LIGHTGREEN}    GPIO15   ${B_LIGHTRED}  Serial 1   ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE} Digital I/O ${B_LIGHTGREEN}    GPIO17   ${B_LIGHTCYAN}      D1      ${B_LIGHTMAGENTA} 11  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 12  ${B_LIGHTCYAN}     D9/A0    ${B_LIGHTGREEN}    GPIO18   ${B_LIGHTYELLOW}    PWM 1    ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE} Digital I/O ${B_LIGHTGREEN}    GPIO27   ${B_LIGHTCYAN}      D2      ${B_LIGHTMAGENTA} 13  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 14  ${B_WHITE}                    GND                 ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE} Digital I/O ${B_LIGHTGREEN}    GPIO22   ${B_LIGHTCYAN}      D3      ${B_LIGHTMAGENTA} 15  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 16  ${B_LIGHTCYAN}     D10/A1   ${B_LIGHTGREEN}    GPIO23   ${B_WHITE} Digital I/O ${RES_ALL}"
+echo -e "${F_BLACK}${B_YELLOW}                3.3V                    ${B_LIGHTMAGENTA} 17  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 18  ${B_LIGHTCYAN}     D11/A2   ${B_LIGHTGREEN}    GPIO24   ${B_WHITE} Digital I/O ${RES_ALL}"
+echo -e "${F_BLACK}${B_GREEN}     SPI     ${B_LIGHTGREEN}    GPIO10   ${B_LIGHTCYAN}     MOSI     ${B_LIGHTMAGENTA} 19  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 20  ${B_WHITE}                    GND                 ${RES_ALL}"
+echo -e "${F_BLACK}${B_GREEN}     SPI     ${B_LIGHTGREEN}    GPIO09   ${B_LIGHTCYAN}     MISO     ${B_LIGHTMAGENTA} 21  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 22  ${B_LIGHTCYAN}     D12/A3   ${B_LIGHTGREEN}    GPIO25   ${B_WHITE} Digital I/O ${RES_ALL}"
+echo -e "${F_BLACK}${B_GREEN}     SPI     ${B_LIGHTGREEN}    GPIO11   ${B_LIGHTCYAN}     SCK      ${B_LIGHTMAGENTA} 23  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 24  ${B_LIGHTCYAN}      CE0     ${B_LIGHTGREEN}    GPIO08   ${B_GREEN}     SPI     ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE}                GND                     ${B_LIGHTMAGENTA} 25  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 26  ${B_LIGHTCYAN}      CE1     ${B_LIGHTGREEN}    GPIO07   ${B_GREEN}(chip enable)${RES_ALL}"
+echo -e "${F_BLACK}${B_GREEN} DO NOT USE  ${B_LIGHTGREEN}    ID_SD    ${B_LIGHTCYAN}  DO NOT USE  ${B_LIGHTMAGENTA} 27  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 28  ${B_LIGHTCYAN}  DO NOT USE  ${B_LIGHTGREEN}    ID_SC    ${B_GREEN} DO NOT USE  ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE} Digital I/O ${B_LIGHTGREEN}    GPIO05   ${B_LIGHTCYAN}      D4      ${B_LIGHTMAGENTA} 29  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 30  ${B_WHITE}                    GND                 ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE} Digital I/O ${B_LIGHTGREEN}    GPIO06   ${B_LIGHTCYAN}      D5      ${B_LIGHTMAGENTA} 31  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 32  ${B_LIGHTCYAN}     D13/A4   ${B_LIGHTGREEN}    GPIO12   ${B_WHITE} Digital I/O ${RES_ALL}"
+echo -e "${F_BLACK}${B_LIGHTYELLOW}    PWM 2    ${B_LIGHTGREEN}    GPIO13   ${B_LIGHTCYAN}      D6      ${B_LIGHTMAGENTA} 33  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 34  ${B_WHITE}                    GND                 ${RES_ALL}"
+echo -e "${F_BLACK}${B_LIGHTYELLOW}    PWM 2    ${B_LIGHTGREEN}    GPIO19   ${B_LIGHTCYAN}      D7      ${B_LIGHTMAGENTA} 35  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 36  ${B_LIGHTCYAN}     D14/A5   ${B_LIGHTGREEN}    GPIO16   ${B_LIGHTYELLOW}    PWM 1    ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE} Digital I/O ${B_LIGHTGREEN}    GPIO26   ${B_LIGHTCYAN}      D8      ${B_LIGHTMAGENTA} 37  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 38  ${B_LIGHTCYAN}     D15/A6   ${B_LIGHTGREEN}    GPIO20   ${B_WHITE} Digital I/O ${RES_ALL}"
+echo -e "${F_BLACK}${B_WHITE}                GND                     ${B_LIGHTMAGENTA} 39  ${B_LIGHTGRAY} X | X ${B_LIGHTMAGENTA} 40  ${B_LIGHTCYAN}     D16/A7   ${B_LIGHTGREEN}    GPIO21   ${B_WHITE} Digital I/O ${RES_ALL}"
+echo -e "${RES_ALL}"
+echo ''

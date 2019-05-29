@@ -1,0 +1,12 @@
+#!/bin/bash
+
+times=0
+if [[ ! -z "$1" ]]; then
+	times="$1"
+else
+	times="1"
+fi
+while [[ "$times" -gt "0" ]]; do
+	cd ..
+	times=$(($times - 1))
+done

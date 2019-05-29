@@ -1,0 +1,13 @@
+#!/bin/bash
+if [[ $# -eq 0 ]]; then
+	echo "Input required"
+	exit 1
+fi
+
+while [ $# != 0 ]
+do
+str=$(echo "ibase=16; obase=A;  ${1^^}"  | bc )
+
+echo "${1^^} = $str"
+shift
+done
