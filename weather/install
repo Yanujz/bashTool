@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "Installing..."
-sudo cp  ./weather /usr/local/bin
+path="`(cd $(dirname \"$0\") && pwd )`"  # absolutized and normalized
+sudo cp  $path/weather /usr/local/bin
 sudo chmod +x /usr/local/bin/weather
 echo "Done."

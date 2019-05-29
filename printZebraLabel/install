@@ -1,8 +1,9 @@
 #!/bin/bash
 echo "Installing dependencies..."
+path="`(cd $(dirname \"$0\") && pwd )`"  # absolutized and normalized
 if [ -d ~/.printZebraLabel ]; then rm -Rf ~/.printZebraLabel; fi
 mkdir ~/.printZebraLabel
-cp -r ./dependencies ~/.printZebraLabel/
-sudo cp  ./printZebraLabel /usr/local/bin
+cp -r $path/dependencies ~/.printZebraLabel/
+sudo cp  $path/printZebraLabel /usr/local/bin
 sudo chmod +x /usr/local/bin/printZebraLabel
 echo "Done."

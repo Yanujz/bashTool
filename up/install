@@ -1,8 +1,8 @@
 #!/bin/bash
 echo "Installing..."
-sudo cp  ./UP /usr/local/bin/
+path="`(cd $(dirname \"$0\") && pwd )`"  # absolutized and normalized
+sudo cp  $path/UP /usr/local/bin/
 echo -e "alias up=\". UP\"" >>  ~/.bashrc
 sudo chmod +x /usr/local/bin/UP
-#exec bash
 echo "Done."
 echo "You must launch \"exec bash\" command or reboot the terminal to use it."

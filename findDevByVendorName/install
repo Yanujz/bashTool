@@ -1,8 +1,9 @@
 #!/bin/bash
 echo "Installing dependencies..."
+path="`(cd $(dirname \"$0\") && pwd )`"  # absolutized and normalized
 if [ -d ~/.devByVendor ]; then rm -Rf ~/.devByVendor; fi
 mkdir ~/.devByVendor
-cp -r ./dependencies ~/.devByVendor/
-sudo cp  ./findDevByVendorName /usr/local/bin
+cp -r $path/dependencies ~/.devByVendor/
+sudo cp  $path/findDevByVendorName /usr/local/bin
 sudo chmod +x /usr/local/bin/findDevByVendorName
 echo "Done."

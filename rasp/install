@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "Installing..."
-sudo cp  ./raspPinout /usr/local/bin
+path="`(cd $(dirname \"$0\") && pwd )`"  # absolutized and normalized
+sudo cp  $path/raspPinout /usr/local/bin
 sudo chmod +x /usr/local/bin/raspPinout
 echo "Done."

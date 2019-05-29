@@ -1,8 +1,10 @@
 #!/bin/bash
 echo "Installing dependencies..."
+path="`(cd $(dirname \"$0\") && pwd )`"  # absolutized and normalized
+
 if [ -d ~/.createNewAvrProject ]; then rm -Rf ~/.createNewAvrProject; fi
 mkdir ~/.createNewAvrProject
-cp -r ./dependencies ~/.createNewAvrProject/
-sudo cp  ./createNewAvrProject /usr/local/bin
+cp -r  $path/dependencies ~/.createNewAvrProject/
+sudo cp $path/createNewAvrProject /usr/local/bin
 sudo chmod +x /usr/local/bin/createNewAvrProject
 echo "Done."
