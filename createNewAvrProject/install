@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "Installing dependencies..."
+if [ -d ~/.createNewAvrProject ]; then rm -Rf ~/.createNewAvrProject; fi
+mkdir ~/.createNewAvrProject
+cp -r ./dependencies ~/.createNewAvrProject/
+sudo cp  ./createNewAvrProject /usr/local/bin
+sudo chmod +x /usr/local/bin/createNewAvrProject
+echo "Done."

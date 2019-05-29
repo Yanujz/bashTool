@@ -1,0 +1,99 @@
+#!/bin/bash
+
+set -e
+function usage
+{
+    echo ""
+    echo "Usage: printZebraLabel {-l [label] || -f [filename]} -ip [IP] -r [\"SRC_0 SRC_1 ... SRC_n|DST_0 DST_1 ... DST_n\"]"
+    echo "   ";
+    echo "  -l  | --label      : Specify label name";
+    echo "  -f  | --filename   : Specify filename";
+    echo "  -ip | --ip         : Specify printer IP";
+    echo "  -p  | --port       : Specify printer port [default: 9100]";
+    echo -e  "  -r  | --replace    : Placeholder to replace";
+    echo "  -h  | --help       : Prompt usage message";
+    echo "        --list       : List builtin label";
+    echo " Example:"
+    echo -e "./printZebraLabel -l smartFactory_v0 -ip 192.168.1.180 -r \"{{MAC}}|AA:BB:CC:DD:EE:FF\""
+    exit 0
+}
+
+function parse_args
+{
+	
+  	#positional args
+  	args=()
+
+  	# named args
+	while [ "$1" != "" ]; do
+		case "$1" in
+	  		-l | --label )		__label="$2";    	shift;;
+			-f | --filename) 	__filename="$2"; 	shift;;
+			-ip| --ip) 			__ip="$2"; 			shift;;
+			-p | --port)		__port="$2";		shift;;
+			-r | --replace)		__replace="$2";		shift;;
+  	      	-h | --help )       usage;          	exit;; # quit and show usage
+  	        * )
+  	        args+=("$1")             # if no match, add it to the positional args
+  	    esac
+  	    shift # move to next kv pair
+  	done
+
+  	# restore positional args
+  	set -- "${args[@]}"
+  	for ((i = 0; i < ${#args[@]}; i++))
+  	do
+  			case ${args[i]} in
+  				--list )
+					bash -c "ls  $depFolder | tr \" \" \"\n\" "
+					exit 0
+					;;
+  			esac
+  	done
+  	# validate required args
+ 	if [[ -z "${__label}" ]] && [[ -z "${__filename}" ]]; then
+ 	    echo "Missing label and filename"
+ 	    usage
+ 	    exit;
+ 	fi
+	#if [[ -z "${__replace}" ]]; then
+ 	#    echo "Replace param is needed"
+ 	#    usage
+ 	#    exit;
+ 	#fi
+ 	if [[ -z "${__ip}" ]]; then
+ 	    echo "IP param is needed"
+ 	    usage
+ 	    exit;
+ 	fi
+}
+
+
+
+function run
+{
+	depFolder="~/.printZebraLabel/dependencies/labels/"
+	__port=9100
+	parse_args "$@"
+	if [[ ! -z "$__label" ]]; then
+		cmd="cat ${depFolder}${__label}"
+	else
+		cmd="cat ${__filename}"
+ 	fi
+	label=$(eval $cmd)
+	set -f; IFS='|'
+	set -- $__replace
+	IFS=' ' read -r -a vectSrc <<< "$1"
+	IFS=' ' read -r -a vectDst <<< "$2"
+	for ((i = 0; i < ${#vectSrc[@]}; i++)) 
+		do
+		label=$(echo $label | sed 's,'"${vectSrc[i]}"','"${vectDst[i]}"',')
+	done
+
+	
+	echo "$label" > /dev/tcp/$__ip/$__port
+
+}
+
+
+run "$@";

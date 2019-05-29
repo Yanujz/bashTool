@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "Removing files..."
+if [ -d ~/.createNewAvrProject ]; then 
+	$(rm -r ~/.createNewAvrProject)
+fi
+if [ -f /usr/local/bin/createNewAvrProject ]; then 
+	$(sudo rm /usr/local/bin/createNewAvrProject)
+fi
+echo "Done."

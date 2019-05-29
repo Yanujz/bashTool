@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "Installing dependencies..."
+if [ -d ~/.printZebraLabel ]; then rm -Rf ~/.printZebraLabel; fi
+mkdir ~/.printZebraLabel
+cp -r ./dependencies ~/.printZebraLabel/
+sudo cp  ./printZebraLabel /usr/local/bin
+sudo chmod +x /usr/local/bin/printZebraLabel
+echo "Done."
