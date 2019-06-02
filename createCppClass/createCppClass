@@ -47,10 +47,10 @@ NAME_UPPER_CAMEL=${NAME_UPPER_CAMEL^}
 
 
 H_HEADER="#ifndef ${NAME_UPPERCASE}_H\n#define ${NAME_UPPERCASE}_H\n\n"
-H_BODY="class ${NAME_UPPER_CAMEL}\n{\npublic:\n\t${NAME_UPPER_CAMEL}();\n\n};\n\n"
-H_FOOTER="#endif"
+H_BODY="class ${NAME_UPPER_CAMEL}\n{\npublic:\n//---- Methods ----//\n\t${NAME_UPPER_CAMEL}();\n\t~${NAME_UPPER_CAMEL}();\n\n//---- Variables ----//\n\nprivate:\n//---- Methods ----//\n\n//---- Variables ----//\n\n};\n\n"
+H_FOOTER="#endif // ${NAME_UPPERCASE}_H" 
 
-CPP="#include \"${NAME_LOWERCASE}.h\"\n\n\n${NAME_UPPER_CAMEL}::${NAME_UPPER_CAMEL}(){\n\n}"
+CPP="#include \"${NAME_LOWERCASE}.h\"\n\n\n${NAME_UPPER_CAMEL}::${NAME_UPPER_CAMEL}(){\n\n}\n\n${NAME_UPPER_CAMEL}::~${NAME_UPPER_CAMEL}(){\n\n}"
 
 
 
