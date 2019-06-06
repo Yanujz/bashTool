@@ -47,7 +47,7 @@ function parse_args
 }
 function select_ide
 {
-	DIR=~/.avr_sdk/dependencies/ide/
+	DIR=~/.createNewAvrProject/dependencies/ide/
 	
 	case $ide in
      qtcreator)      
