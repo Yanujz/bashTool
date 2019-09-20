@@ -1,6 +1,10 @@
 #!/bin/bash
 echo "Installing..."
 path="`(cd $(dirname \"$0\") && pwd )`"  # absolutized and normalized
-sudo cp $path/createCppFiles /usr/local/bin
-sudo chmod +x /usr/local/bin/createCppFiles
+#sudo cp $path/createCppFiles /usr/local/bin
+#sudo touch /usr/local/bin/createCppFiles
+#sudo chmod +x /usr/local/bin/createCppFiles
+sudo echo -e "$(cat createCppFiles | sed 's,'"<licenses>"','"$(realpath licenses)"',' | sed 's,'"<settings>"','"$(realpath settings)"',')" > createCppFiles_temp
+sudo chmod +x createCppFiles_temp
+sudo mv createCppFiles_temp /usr/local/bin/createCppFiles
 echo "Done."

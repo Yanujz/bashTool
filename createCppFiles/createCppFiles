@@ -1,8 +1,13 @@
 #!/bin/zsh
-##!/bin/bash
+##!/bin/bash 
 
 #abort on error
 set -e
+ if [[ ! -f /bin/zsh ]]; then
+ 	echo "This script works in a zsh shell"
+ 	exit 1
+ fi
+
 
 function usage
 {
@@ -21,8 +26,8 @@ function usage
     echo "./createCppFiles -n foo -l bar -a Foo -e <foo@email.com> -d \"Brief description of file\""
 }
 version=1.0
-licensesFolder=licenses
-settingsFolder=settings
+licensesFolder=<licenses>
+settingsFolder=<settings>
 configFile=$settingsFolder/conf.ini
 license=""
 currentYear=$(date +"%Y")
