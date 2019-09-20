@@ -1,0 +1,141 @@
+#!/bin/zsh
+##!/bin/bash
+
+#abort on error
+set -e
+
+function usage
+{
+    echo "usage: createCppFiles -n <fileName> -l <licenseName> -a <authorName> -e <email> -d <description>"
+    echo "";
+    echo "  -a  | --author         : Specify Author's name";
+    echo "  -d  | --description    : Brew file's description";
+    echo "  -e  | --email          : Specify Author's email";
+    echo "  -l  | --license        : Specify license";
+    echo "  -n  | --name           : Specify file name";
+    echo "  -lL | --licenses       : List licenses"; 
+    echo "  -rC | --resetConf      : Restore default settings";
+    echo "      | --version        : Show Version";
+    echo "  -h  | --help           : Show this message";
+    echo " Example:"
+    echo "./createCppFiles -n foo -l bar -a Foo -e <foo@email.com> -d \"Brief description of file\""
+}
+version=1.0
+licensesFolder=licenses
+settingsFolder=settings
+configFile=$settingsFolder/conf.ini
+license=""
+currentYear=$(date +"%Y")
+declare -A userSetting
+
+function showVersion
+{
+	printf "Version %s\r\n" $version
+}
+
+function showLicenses
+{
+	echo -e "Found: $(ls $licensesFolder | wc -w | tr -d " ")\\n"
+	ls $licensesFolder
+}
+
+function parse_args
+{
+  # positional args
+  args=()
+
+  # named args
+  while [ "$1" != "" ]; do
+      case "$1" in
+      	-n  | 	--name )			fileName="$2";				shift;;
+		-l  | 	--license )			userSetting[license]="$2";	shift;;
+		-a  | 	--author )			userSetting[author]="$2";	shift;;
+		-d  | 	--description )		description="$2";			shift;;
+		-e  | 	--email )			userSetting[email]="$2";	shift;;
+		-vv	|	--version ) 		showVersion; 				shift;;
+		-lL | 	--licenses ) 		showLicenses; 				shift;;
+		-rC |	--resetConf ) 		resetConf; 					shift;;
+        -h  | 	--help )   			usage;						exit;; # quit and show usage
+        * )                     args+=("$1") # if no match, add it to the positional args
+      esac
+      shift # move to next kv pair
+  done
+
+  # validate required args
+  if [[ -z "${fileName}" ]]; then
+      echo "flag \"-n | --name\" is required"
+      usage
+      exit;
+  fi
+
+}
+function createFiles
+{
+	echo -e "/*" > ${fileName}.h
+	echo -e "\\t$description\\n" >> ${fileName}.h
+	echo -e "\\tAuthor : $(echo $userSetting[author])\\n" >> ${fileName}.h
+	echo -e "\\tCreated in :$(date +" %m/%d/%Y")\\n" >> ${fileName}.h
+	echo -e "$license\\n" >> ${fileName}.h
+	echo -e "\\tYou may contact the author by:\\n\\t\\te-mail: $(echo $userSetting[email] | tr -d "\"")" >> ${fileName}.h
+	echo -e "*/" >> ${fileName}.h
+	echo -e "#pragma once" >> ${fileName}.h
+  	echo -e "#include \"${name}.h\"" > ${fileName}.cpp
+}
+
+function GPLv3 
+{
+	license=$(cat $licensesFolder/$userSetting[license] | sed 's,'"<year>"','"$currentYear"',' | sed 's,'"<name of author>"','"$userSetting[author]"',')
+}
+
+function MIT 
+{
+	license=$(cat $licensesFolder/$userSetting[license] | sed 's,'"<YEAR>"','"$currentYear"',' | sed 's,'"<COPYRIGHT HOLDER>"','"$userSetting[author]"',')
+}
+
+
+function checkDefaultSettings 
+{
+	eval "arr=($(cat $configFile | tr "=\n" " "))"
+
+	for (( i = 1; i < ${#arr[@]} + 1; i += 2 )); do
+  		userSetting[${arr[$i]}]=$(echo "${arr[$i + 1]}")
+	done
+	if [ -z $(echo -n "$userSetting[author]" | tr -d " \"")  ] || [ -z $(echo -n "$userSetting[author]" | tr -d " \"")  ] || [ -z $(echo -n "$userSetting[license]" | tr -d " \"")  ]; then
+		echo "Default settings are incomplete. Please upgrade it."
+		for k in "${(@k)userSetting}"; do
+  			printf "Please insert $(echo $k) : "
+  			read var
+  			userSetting[$k]="$var"
+		done
+		printf "" > $configFile
+		for k in "${(@k)userSetting}"; do
+			echo "$k=\"$userSetting[$k]\"" >> $configFile
+		done
+		echo "Done."
+	fi
+}
+
+function resetConf
+{
+	echo -e "email=\"\"\\nauthor=\"\"" > $configFile
+	exit 0
+}
+
+function run
+{
+	checkDefaultSettings
+	parse_args "$@"
+	case "$userSetting[license]" in
+		GPLv3)	GPLv3;;
+        MIT)	MIT;;
+         
+        * )
+ 
+	esac
+
+	createFiles
+}
+
+
+
+run "$@";

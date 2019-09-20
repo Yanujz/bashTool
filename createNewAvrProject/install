@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Installing dependencies..."
 path="`(cd $(dirname \"$0\") && pwd )`"  # absolutized and normalized
-
+echo "path: "$path
 if [ -d ~/.createNewAvrProject ]; then rm -Rf ~/.createNewAvrProject; fi
 mkdir ~/.createNewAvrProject
 cp -r  $path/dependencies ~/.createNewAvrProject/
