@@ -84,7 +84,7 @@ function createFiles
 	echo -e "\\tYou may contact the author by:\\n\\t\\te-mail: $(echo $userSetting[email] | tr -d "\"")" >> ${fileName}.h
 	echo -e "*/" >> ${fileName}.h
 	echo -e "#pragma once" >> ${fileName}.h
-  	echo -e "#include \"${name}.h\"" > ${fileName}.cpp
+  	echo -e "#include \"${fileName}.h\"" > ${fileName}.cpp
 }
 
 function GPLv3 
