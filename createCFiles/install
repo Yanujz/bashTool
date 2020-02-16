@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "Installing..."
+path="`(cd $(dirname \"$0\") && pwd )`"  # absolutized and normalized
+#sudo cp $path/createCFiles /usr/local/bin
+#sudo touch /usr/local/bin/createCFiles
+#sudo chmod +x /usr/local/bin/createCFiles
+sudo echo -e "$(cat createCFiles | sed 's,'"<licenses>"','"$(realpath licenses)"',' | sed 's,'"<settings>"','"$(realpath settings)"',')" > createCFiles_temp
+sudo chmod +x createCFiles_temp
+sudo mv createCFiles_temp /usr/local/bin/createCFiles
+echo "Done."
