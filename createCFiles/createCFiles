@@ -25,7 +25,7 @@ function usage
     echo " Example:"
     echo "./createCppFiles -n foo -l bar -a Foo -e <foo@email.com> -d \"Brief description of file\""
 }
-version=1.0
+version=1.1
 licensesFolder=<licenses>
 settingsFolder=<settings>
 configFile=$settingsFolder/conf.ini
@@ -72,18 +72,31 @@ function parse_args
       usage
       exit;
   fi
-
 }
+
+
 function createFiles
 {
-	echo -e "/*" > ${fileName}.h
-	echo -e "\\t$description\\n" >> ${fileName}.h
-	echo -e "\\tAuthor : $(echo $userSetting[author])\\n" >> ${fileName}.h
-	echo -e "\\tCreated in :$(date +" %m/%d/%Y")\\n" >> ${fileName}.h
-	echo -e "$license\\n" >> ${fileName}.h
-	echo -e "\\tYou may contact the author by:\\n\\t\\te-mail: $(echo $userSetting[email] | tr -d "\"")" >> ${fileName}.h
+	echo -e "/**" > ${fileName}.h
+ 	echo -e "* @file            ${fileName}.h" >> ${fileName}.h
+ 	echo -e "* @brief           Template include file" >> ${fileName}.h
+ 	echo -e "*/" >> ${fileName}.h
+ 	echo -e "\\n" >> ${fileName}.h
+	echo -e "/*" >> ${fileName}.h
+	echo -e "\t$description\n" >> ${fileName}.h
+	echo -e "\tAuthor : $(echo $userSetting[author])\n" >> ${fileName}.h
+	echo -e "\tCreated in :$(date +" %m/%d/%Y")\n" >> ${fileName}.h
+	echo -e "$license\n" >> ${fileName}.h
+	echo -e "\tYou may contact the author by:\n\t\te-mail: $(echo $userSetting[email] | tr -d "\"")" >> ${fileName}.h
 	echo -e "*/" >> ${fileName}.h
 	echo -e "#pragma once" >> ${fileName}.h
+	echo -e "#ifdef __cplusplus" >> ${fileName}.h
+	echo -e "extern \"C\" {" >> ${fileName}.h
+	echo -e "#endif" >> ${fileName}.h
+	echo -e "\\n\\n\\n" >> ${fileName}.h
+	echo -e "#ifdef __cplusplus" >> ${fileName}.h
+	echo -e "}" >> ${fileName}.h
+	echo -e "#endif" >> ${fileName}.h
   	echo -e "#include \"${fileName}.h\"" > ${fileName}.c
 }
 
