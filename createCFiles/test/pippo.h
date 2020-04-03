@@ -1,16 +1,11 @@
 /**
 * @file            pippo.h
-* @brief           Template include file
+* @brief           
 */
 
 
 /*
 	
-
-	Author : Yanujz
-
-	Created in : 04/02/2020
-
     Copyright (C) 2020  Yanujz
 
     This program is free software: you can redistribute it and/or modify
@@ -25,9 +20,13 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 	You may contact the author by:
 		e-mail: yanujz@live.it
+
+
+	Author:      Yanujz
+	Created:     04/02/2020
+	Version:     {{version}}
 */
 #pragma once
 #ifdef __cplusplus

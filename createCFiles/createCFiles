@@ -77,27 +77,52 @@ function parse_args
 
 function createFiles
 {
+	# File .h part
 	echo -e "/**" > ${fileName}.h
  	echo -e "* @file            ${fileName}.h" >> ${fileName}.h
- 	echo -e "* @brief           Template include file" >> ${fileName}.h
+ 	echo -e "* @brief           $description" >> ${fileName}.h
  	echo -e "*/" >> ${fileName}.h
- 	echo -e "\\n" >> ${fileName}.h
+ 	echo -e "\n" >> ${fileName}.h
+
 	echo -e "/*" >> ${fileName}.h
-	echo -e "\t$description\n" >> ${fileName}.h
-	echo -e "\tAuthor : $(echo $userSetting[author])\n" >> ${fileName}.h
-	echo -e "\tCreated in :$(date +" %m/%d/%Y")\n" >> ${fileName}.h
-	echo -e "$license\n" >> ${fileName}.h
-	echo -e "\tYou may contact the author by:\n\t\te-mail: $(echo $userSetting[email] | tr -d "\"")" >> ${fileName}.h
+	echo -e "	$description" >> ${fileName}.h
+	echo -e "$license" >> ${fileName}.h
+	echo -e "	You may contact the author by:
+		e-mail: $(echo $userSetting[email] | tr -d "\"")" >> ${fileName}.h
+	echo -e "\n" >> ${fileName}.h
+	echo -e "	Author:      $(echo $userSetting[author])" >> ${fileName}.h
+	echo -e "	Created:     $(date +"%m/%d/%Y")" >> ${fileName}.h
+	echo -e "	Version:     {{version}}" >> ${fileName}.h
 	echo -e "*/" >> ${fileName}.h
+
 	echo -e "#pragma once" >> ${fileName}.h
 	echo -e "#ifdef __cplusplus" >> ${fileName}.h
 	echo -e "extern \"C\" {" >> ${fileName}.h
 	echo -e "#endif" >> ${fileName}.h
-	echo -e "\\n\\n\\n" >> ${fileName}.h
+	echo -e "\n\n\n" >> ${fileName}.h
 	echo -e "#ifdef __cplusplus" >> ${fileName}.h
 	echo -e "}" >> ${fileName}.h
 	echo -e "#endif" >> ${fileName}.h
-  	echo -e "#include \"${fileName}.h\"" > ${fileName}.c
+
+	# File .c part
+	echo -e "/**" > ${fileName}.c
+ 	echo -e "* @file            ${fileName}.c" >> ${fileName}.c
+ 	echo -e "* @brief           $description" >> ${fileName}.c
+ 	echo -e "*/" >> ${fileName}.c
+ 	echo -e "\n" >> ${fileName}.c
+
+	echo -e "/*" >> ${fileName}.c
+	echo -e "	$description" >> ${fileName}.c
+	echo -e "$license" >> ${fileName}.c
+	echo -e "	You may contact the author by:
+		e-mail: $(echo $userSetting[email] | tr -d "\"")" >> ${fileName}.c
+	echo -e "\n" >> ${fileName}.c
+	echo -e "	Author:      $(echo $userSetting[author])" >> ${fileName}.c
+	echo -e "	Created:     $(date +"%m/%d/%Y")" >> ${fileName}.c
+	echo -e "	Version:     {{version}}" >> ${fileName}.c
+	echo -e "*/" >> ${fileName}.c
+
+  	echo -e "#include \"${fileName}.h\"" >> ${fileName}.c
 }
 
 function GPLv3 
