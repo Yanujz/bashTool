@@ -25,7 +25,7 @@ function usage
     echo " Example:"
     echo "./createCppFiles -n foo -l bar -a Foo -e <foo@email.com> -d \"Brief description of file\""
 }
-version=1.1
+version=1.2
 licensesFolder=<licenses>
 settingsFolder=<settings>
 configFile=$settingsFolder/conf.ini
@@ -81,6 +81,10 @@ function createFiles
 	echo -e "/**" > ${fileName}.h
  	echo -e "* @file            ${fileName}.h" >> ${fileName}.h
  	echo -e "* @brief           $description" >> ${fileName}.h
+ 	echo -e "*" >> ${fileName}.h
+ 	echo -e "* @author          $(echo $userSetting[author])" >> ${fileName}.h
+ 	echo -e "* @date            $(date +"%m/%d/%Y")" >> ${fileName}.h
+ 	echo -e "* @version         1.0" >> ${fileName}.h
  	echo -e "*/" >> ${fileName}.h
  	echo -e "\n" >> ${fileName}.h
 
@@ -92,7 +96,7 @@ function createFiles
 	echo -e "\n" >> ${fileName}.h
 	echo -e "	Author:      $(echo $userSetting[author])" >> ${fileName}.h
 	echo -e "	Created:     $(date +"%m/%d/%Y")" >> ${fileName}.h
-	echo -e "	Version:     {{version}}" >> ${fileName}.h
+	echo -e "	Version:     1.0" >> ${fileName}.h
 	echo -e "*/" >> ${fileName}.h
 
 	echo -e "#pragma once" >> ${fileName}.h
@@ -108,6 +112,10 @@ function createFiles
 	echo -e "/**" > ${fileName}.c
  	echo -e "* @file            ${fileName}.c" >> ${fileName}.c
  	echo -e "* @brief           $description" >> ${fileName}.c
+ 	echo -e "*" >> ${fileName}.c
+ 	echo -e "* @author          $(echo $userSetting[author])" >> ${fileName}.c
+ 	echo -e "* @date            $(date +"%m/%d/%Y")" >> ${fileName}.c
+ 	echo -e "* @version         1.0" >> ${fileName}.c
  	echo -e "*/" >> ${fileName}.c
  	echo -e "\n" >> ${fileName}.c
 
@@ -119,7 +127,7 @@ function createFiles
 	echo -e "\n" >> ${fileName}.c
 	echo -e "	Author:      $(echo $userSetting[author])" >> ${fileName}.c
 	echo -e "	Created:     $(date +"%m/%d/%Y")" >> ${fileName}.c
-	echo -e "	Version:     {{version}}" >> ${fileName}.c
+	echo -e "	Version:     1.0" >> ${fileName}.c
 	echo -e "*/" >> ${fileName}.c
 
   	echo -e "#include \"${fileName}.h\"" >> ${fileName}.c

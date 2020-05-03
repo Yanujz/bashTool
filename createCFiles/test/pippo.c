@@ -1,6 +1,10 @@
 /**
-* @file            pippo.c
+* @file            pippo.h
 * @brief           
+*
+* @author          Yanujz
+* @date            04/09/2020
+* @version         1.0
 */
 
 
@@ -25,7 +29,7 @@
 
 
 	Author:      Yanujz
-	Created:     04/02/2020
-	Version:     {{version}}
+	Created:     04/09/2020
+	Version:     1.0
 */
 #include "pippo.h"
